@@ -7,8 +7,8 @@ import {
   OBTENER_PROYECTOS,
   AGREGAR_PROYECTO,
   VALIDAR_FORMULARIO,
-  PROYECTO_ACTUAL,
   ELIMINAR_PROYECTO,
+  ACTUAL_PROYECTO,
 } from "../../types";
 
 const ProjectState = (props) => {
@@ -47,7 +47,7 @@ const ProjectState = (props) => {
   };
 
   const actualProyecto = (idProyecto) => {
-    dispatch({ type: PROYECTO_ACTUAL, payload: idProyecto });
+    dispatch({ type: ACTUAL_PROYECTO, payload: idProyecto });
   };
   const eliminarProyecto = (idProyecto) => {
     dispatch({ type: ELIMINAR_PROYECTO, payload: idProyecto });

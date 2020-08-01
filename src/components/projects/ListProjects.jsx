@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Project from "./Project";
 import projectContext from "../../context/projects/ProjectContext";
 
@@ -10,6 +11,7 @@ const ListProjects = () => {
   // obtener proyetos cuando carga el componente
   useEffect(() => {
     obtenerProyectos();
+    // eslint-disable-next-line
   }, []);
 
   // revisa si hay proyectos
@@ -18,9 +20,13 @@ const ListProjects = () => {
 
   return (
     <ul className="listado-proyectos">
-      {proyectos.map((proyecto) => (
-        <Project key={proyecto.id} proyecto={proyecto} />
-      ))}
+      <TransitionGroup>
+        {proyectos.map((proyecto) => (
+          <CSSTransition key={proyecto.id} classNames="proyecto" timeout={200}>
+            <Project proyecto={proyecto} />
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
     </ul>
   );
 };

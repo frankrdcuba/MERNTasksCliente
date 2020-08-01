@@ -3,8 +3,8 @@ import {
   OBTENER_PROYECTOS,
   AGREGAR_PROYECTO,
   VALIDAR_FORMULARIO,
-  PROYECTO_ACTUAL,
   ELIMINAR_PROYECTO,
+  ACTUAL_PROYECTO,
 } from "../../types";
 
 export default (state, action) => {
@@ -25,7 +25,7 @@ export default (state, action) => {
         ...state,
         errorformulario: true,
       };
-    case PROYECTO_ACTUAL:
+    case ACTUAL_PROYECTO:
       return {
         ...state,
         proyecto: state.proyectos.filter(

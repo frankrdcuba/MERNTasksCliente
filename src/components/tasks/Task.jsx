@@ -4,7 +4,12 @@ import projectContext from "../../context/projects/ProjectContext";
 
 const Task = ({ tarea }) => {
   const tareasContext = useContext(tasksContext);
-  const { eliminarTarea, obtenerTareas } = tareasContext;
+  const {
+    eliminarTarea,
+    obtenerTareas,
+    cambiarEstadoTarea,
+    tareaActual,
+  } = tareasContext;
 
   const proyectoContext = useContext(projectContext);
   const { proyecto } = proyectoContext;
@@ -12,7 +17,15 @@ const Task = ({ tarea }) => {
 
   const handleDelete = (idTarea) => {
     eliminarTarea(idTarea);
-    // obtenerTareas(proyectoActual.id);
+    obtenerTareas(proyectoActual.id);
+  };
+  const handleOnclick = (tarea) => {
+    if (tarea.status) {
+      tarea.status = false;
+    } else {
+      tarea.status = true;
+    }
+    cambiarEstadoTarea(tarea);
   };
 
   return (
@@ -20,17 +33,29 @@ const Task = ({ tarea }) => {
       <p>{tarea.name}</p>
       <div className="estado">
         {tarea.status ? (
-          <button type="button" className="completo">
+          <button
+            type="button"
+            className="completo"
+            onClick={() => handleOnclick(tarea)}
+          >
             Completo
           </button>
         ) : (
-          <button type="button" className="incompleto">
+          <button
+            type="button"
+            className="incompleto"
+            onClick={() => handleOnclick(tarea)}
+          >
             Incompleto
           </button>
         )}
       </div>
       <div className="acciones">
-        <button type="button" className="btn btn-primario">
+        <button
+          type="button"
+          className="btn btn-primario"
+          onClick={() => tareaActual(tarea)}
+        >
           Editar
         </button>
         <button
